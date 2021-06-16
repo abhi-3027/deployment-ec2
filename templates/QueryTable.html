@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Query</title>
+        <link href="../static/css/styles.css" rel="stylesheet" />
+        <link href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html">My Kiosk</a>
+
+            <!-- Navbar-->
+            <ul class="navbar-nav ml-auto mr-0 mr-md-3 my-2 my-md-0">
+                <li class="nav-item ">
+                    <!-- For onclick following method needs to be followed -->
+                    <button class="nav-link bg-dark" onclick="window.location.href='{{ url_for( 'logout') }}';"><i
+                            class="fas fa-user fa-fw"></i>Logout</button>
+                </li>
+
+            </ul>
+        </nav>
+        
+        <div class="card mb-4" id="studentsTable">
+            <div class="card-header">
+               <i class="fas fa-table mr-1"></i>
+               Query Table -> {{field}} : {{val}} ; Program Id : {{progid}}
+               <!-- Displaying Students for {{val}} {{field}} with Program Id {{progid}} -->
+
+               <a class="float-right btn btn-primary" href="../static/Queries/{{filename}}" download><i class="fa fa-download"></i> Download
+                   xlsx</a>
+               <a class="float-right btn btn-dark mr-2" href="{{url_for('returnToMain')}}"><i class="fa fa-user"></i> Return To Dashboard</a>
+
+           </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" id="dataTable3" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Roll No</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Year</th>
+                                <th>Contact</th>
+                                <th>Branch</th>
+                                <th>Job Offer</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for i in range(student_records|length)%}
+                            <tr>
+                                {%for key in student_records[i]%}
+                                <td> {{student_records[i][key]}} </td>
+                                {%endfor%}
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <script src="js/scripts.js"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" crossorigin="anonymous"></script>
+        <script src="../static/assets/demo/datatables-demo.js"></script>
+    </body>
+</html>
